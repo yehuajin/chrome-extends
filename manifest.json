@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "注入js",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches": ["https://lpt.liepin.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "scripts": ["bg.js"] 
+    },
+    "permissions": [
+        "cookies",
+        "*://*.liepin.com/"
+    ]
+}
