@@ -12,11 +12,7 @@ chrome.extension.sendMessage(
 // );
 
 chrome.runtime.onMessage.addListener(function (message) {
-  console.log(message);
-  const params = {
-    domain: ".liepin.com",
-    url: "http://lpt.liepin.com",
-    cookie: JSON.stringify(message),
-  };
-  window.opener.postMessage(params, "*");
+  if (location.pathname.indexOf('/user/login') === -1) {
+    window.opener.postMessage(JSON.stringify(message), "*");
+  }
 });
