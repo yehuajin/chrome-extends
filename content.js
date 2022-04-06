@@ -1,16 +1,12 @@
-chrome.extension.sendMessage(
-  { cmd: "来自前台页面的主动调用" },
-  function (response) {
-    console.log(response);
-  }
-); //测试前台掉后台
+// 往bg发送消息
+chrome.extension.sendMessage({origin: location.origin}, function () {});
 
 // chrome.extension.onMessage.addListener(
 // 	function(request, sender, sendResponse) {
 //     console.log('request', request);
 // 	}
 // );
-
+// 接受bg发过来的信息
 chrome.runtime.onMessage.addListener(function (message) {
   if (location.pathname.indexOf('/user/login') === -1) {
     window.opener.postMessage(JSON.stringify(message), "*");
